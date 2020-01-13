@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./App.css";
 class CreateNote extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +38,7 @@ class CreateNote extends Component {
   render() {
     return (
       <div>
-        <p>Add Material</p>
+        <p className="add-material-title">Add Material</p>
         <select
           onChange={this.handleChangeId}
           name="courseId"
@@ -49,17 +50,20 @@ class CreateNote extends Component {
             </option>
           ))}
         </select>
+        <br />
         <input
           placeholder="Display Name"
           name="name"
           onChange={this.handleChange}
         />
+        <br />
         <input
           type="file"
           name="note_file"
           onChange={this.uploadFile}
           required
         />
+        <br />
         <button onClick={this.handleClick}>Upload</button>
       </div>
     );

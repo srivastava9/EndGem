@@ -1,11 +1,28 @@
 import React, { Component } from "react";
 import "./note.css";
 import pdf from "../../assets/pdf.png";
+import CallApi from "../../api.js";
 import download from "../../assets/download.png";
+const callApi = new CallApi();
 class EachNote extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      noDownloads: this.props.nodownload
+    };
+    this.updateDownload = this.updateDownload.bind(this);
+  }
+  componentDidMount() {
+    console.log(this.props);
+  }
+  async updateDownload(e) {
+    this.setState({
+      noDownloads: this.state.noDownloads + 1
+    });
+
+    callApi.updateDownload(this.props.id, this.state.noDownloads).then(() => {
+      console.log("update download");
+    });
   }
   render() {
     return (
@@ -21,7 +38,9 @@ class EachNote extends Component {
           Total Downloads : {this.props.nodownload}
         </div>
         <div onClick={this.props.handleDownload} className="img-download">
-          <img src={download} alt="img-download" />
+          <a href={this.props.notefile} download onClick={this.updateDownload}>
+            <img src={download} alt="img-download" />
+          </a>
         </div>
       </div>
     );

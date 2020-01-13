@@ -61,3 +61,27 @@
   border-radius: 0;
   border-bottom: 1px solid #38bb6c;
 }
+.courses-list {
+  display: flex;
+  justify-content: space-around;
+}
+li {
+  cursor: pointer;
+  list-style: none;
+  border: 10px grey;
+  font-size: 20px;
+  height: 10%;
+  background-color: antiquewhite;
+}
+input {
+  margin-top: 1%;
+}
+.add-material-title {
+  border: 10px grey;
+  font-size: 20px;
+  height: 10%;
+}
+button {
+  margin-top: 1%;
+  width: 5%;
+}

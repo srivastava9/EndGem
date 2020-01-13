@@ -24,4 +24,12 @@ export default class CallApi {
       })
       .catch(err => console.log(err));
   }
+  updateDownload(noDownload, pk) {
+    const url = `${API_URL}/courses/note/${pk}`;
+    return axios.put(url, noDownload).catch(err => console.log(err));
+  }
+  getNotesList() {
+    const url = `${API_URL}/courses/note`;
+    return axios.get(url).then(res => res.data);
+  }
 }

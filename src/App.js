@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import EachNote from "./components/eachNote/note";
 import CallApi from "./api";
 import CreateNote from "./createNote.js";
-
+import "./App.css";
 const callApi = new CallApi();
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       courses: [],
+      allnotes: [],
       notes: [],
       newNote: "",
       newNoteCourse: "",
@@ -22,7 +23,11 @@ class App extends Component {
       console.log(res);
       self.setState({ courses: res });
     });
+    callApi.getNotesList().then(function(res) {
+      self.setState({ allnotes: res });
+    });
   }
+
   openNotes = e => {
     var self = this;
     callApi.getNotes(e.target.id).then(function(res) {
@@ -30,6 +35,7 @@ class App extends Component {
       self.setState({ notes: res });
     });
   };
+
   submitNote = () => {
     let { newNote, newNoteCourse, newNoteFile } = this.state;
 
@@ -61,8 +67,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <EachNote title="PDF Title" date="6/11/2019" nodownload="14" />
-        <ul>
+        <ul className="courses-list">
           {this.state.courses.map(item => (
             <li key={item.id} onClick={this.openNotes} id={item.id}>
               {item.title}
@@ -71,9 +76,11 @@ class App extends Component {
         </ul>
         {this.state.notes.map(item => (
           <EachNote
+            id={item.id}
             title={item.name}
             date={item.date_uploaded}
             nodownload={item.no_download}
+            notefile={item.note_file}
           />
         ))}
         <div>
@@ -81,6 +88,23 @@ class App extends Component {
             courses={this.state.courses}
             handleSubmit={this.handleSubmit}
           />
+        </div>
+        <br />
+        <br />
+        <hr />
+        <div>
+          All Notes By Downloads
+          <br />
+          <hr />
+          {this.state.allnotes.map(item => (
+            <EachNote
+              id={item.id}
+              title={item.name}
+              date={item.date_uploaded}
+              nodownload={item.no_download}
+              notefile={item.note_file}
+            />
+          ))}
         </div>
       </div>
     );
