@@ -18,6 +18,7 @@ axios
 make virtual env
 and install requirements
 ```
+cd EndGem/
 virtualenv myvenv
 source myvenv/bin/activate
 pip install requirements.txt
