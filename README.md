@@ -12,7 +12,7 @@ axios
 
 #### Clone the App
   
-    git clone https://github.com/srivastava9/MedHelp.git
+    git clone https://github.com/srivastava9/EndGem.git
   
 #### Run the Django backend Server :
 make virtual env
