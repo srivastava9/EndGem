@@ -22,6 +22,7 @@ cd EndGem/
 virtualenv myvenv
 source myvenv/bin/activate
 pip install -r requirements.txt
+pip install django-cors-headers
 cd/venv
 python manage.py runserver
 
