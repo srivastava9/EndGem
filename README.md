@@ -21,7 +21,7 @@ and install requirements
 cd EndGem/
 virtualenv myvenv
 source myvenv/bin/activate
-pip install requirements.txt
+pip install -r requirements.txt
 cd/venv
 python manage.py runserver
 
